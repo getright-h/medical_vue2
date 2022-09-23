@@ -1,0 +1,47 @@
+/* eslint-disable vue/comment-directive */
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const foo = {
+                msg: "success",
+                ordermsg: [
+                    {
+                        money: 60,
+                        pmode: "余额",
+                        balance: 2000,
+                        status: 1,
+                        order_num: "JF2020081900098",
+                        time: "2019-08-15 14:02:26",
+                        remark: "大大哈哈哈大",
+                    },
+                ],
+                code: 200,
+                patientmsg: [
+                    {
+                        name: "王敏",
+                        medcard_card: "5000909000",
+                        type: "身份证号",
+                        id_card: "1111111",
+                        nickname: "小雨真可爱",
+                        phone: "13183908661",
+                        address: "国信安",
+                        pic_url: "头像地址",
+                    },
+                ],
+            };
+            let bar = {
+                ordermsg: { ...foo.ordermsg[0] },
+                patientmsg: { ...foo.patientmsg[0] },
+            };
+            console.dir(foo);
+            console.dir(bar);
+        </script>
+    </body>
+</html>

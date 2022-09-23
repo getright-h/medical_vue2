@@ -1,0 +1,159 @@
+<template>
+  <div>
+    <h1 id="yuy">预约详情</h1>
+    <template >
+      <el-table
+        :data="tableData1"
+        border
+        style="width: 100%"
+        :row-class-name="tableRowClassName"
+      >
+        <el-table-column prop="project" label="预约类型"></el-table-column>
+        <el-table-column prop="administrative" label="出诊科室">
+        </el-table-column>
+        <el-table-column prop="card" label="就诊卡号"> </el-table-column>
+        <el-table-column prop="name" label="出诊医生"> </el-table-column>
+        <el-table-column prop="type" label="挂号类型"> </el-table-column>
+        <el-table-column prop="cost" label="费用"> </el-table-column>
+        <el-table-column prop="doTime" label="预约日期" width="180px"> </el-table-column>
+        <el-table-column prop="status" label="就诊状态"> </el-table-column>
+        <!-- <el-table-column prop="operation"  class="el-icon-edit"  label="操作"> </el-table-column> -->
+		<template >
+        <el-table-column prop="operation" label="操作" >
+          <template slot-scope="scope">
+            <el-button v-if="scope.row.state == '待就诊'">取消预约</el-button>
+          </template>
+        </el-table-column>
+		</template>
+      </el-table>
+    </template>
+	 <fenye :pageNo="1" :pageSize="10" :total="600" :continues="5" @getPageNo="getPageNo"></fenye>
+  </div>
+  
+</template>
+ 
+<script>
+import fenye from '../../components/Pagination/index.vue'
+export default {
+  methods: {
+    tableRowClassName({ row, rowIndex }) {
+      if (rowIndex === 1) {
+        return "warning-row";
+      } else if (rowIndex === 3) {
+        return "success-row";
+      }
+      return "";
+    },
+	async reserved (){
+		let result = await this.$API.Booking()
+		if(result.code == 200){
+			this.tableData = result.data
+		}
+			console.log(result);
+		
+	},
+  getPageNo(value) {
+      console.log(value);
+    },
+  },
+  mounted() {
+	  this.reserved()
+  },
+  data() {
+
+    return {
+		cell:'',
+      operate: "",
+      tableData1: [
+        {
+          project: "大保健",
+          administrative: "保健科",
+          card: "1234567",
+          status: "专家号",
+          cost: "998",
+          state: "待就诊",
+          date: "2022-05-02",
+          doctor: "王小虎",
+        },
+        {
+          project: "大保健",
+          administrative: "保健科",
+          card: "1234567",
+          status: "专家号",
+          cost: "998",
+          state: "已就诊",
+          date: "2022-05-02",
+          doctor: "王小虎",
+        },
+        {
+          project: "大保健",
+          administrative: "保健科",
+          card: "1234567",
+          status: "专家号",
+          cost: "998",
+          state: "未就诊",
+          date: "2022-05-02",
+          doctor: "王小虎",
+        },
+        {
+          project: "大保健",
+          administrative: "保健科",
+          card: "1234567",
+          status: "专家号",
+          cost: "998",
+          state: "已就诊",
+          date: "2022-05-02",
+          doctor: "王小虎",
+        },
+        {
+          project: "大保健",
+          administrative: "保健科",
+          card: "1234567",
+          status: "专家号",
+          cost: "998",
+          state: "已就诊",
+          date: "2022-05-02",
+          doctor: "王小虎",
+        },
+        {
+          project: "大保健",
+          administrative: "保健科",
+          card: "1234567",
+          status: "专家号",
+          cost: "998",
+          state: "已就诊",
+          date: "2022-05-02",
+          doctor: "王小虎",
+        },
+      ],
+	  tableData:[]
+    };
+  },
+  computed: {
+	  getStatus(){
+		  return this.tableData.filter(item => item.state=='待就诊')
+	  }
+  },
+  components:{fenye}
+};
+</script>
+
+
+<style lang="less" scope>
+#yuy {
+  text-align: center;
+  color: rgb(119, 161, 253);
+  margin: 10px 0px;
+}
+#paging {
+  text-align: center;
+  margin: 10px 0px;
+}
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
+}
+</style>

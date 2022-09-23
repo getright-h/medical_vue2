@@ -1,0 +1,12 @@
+{
+    "isAll": false,
+    "operationTime": "2000-1-1",
+    "orderId": "1",
+    "patientName": "zhang3",
+    "cardId": "9527",
+    "source": "weChat",
+    "yewuType": "住院",
+    "payType": "weChta",
+    "count": 200,
+    "isPay": false
+}
